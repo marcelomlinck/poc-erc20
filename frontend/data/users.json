@@ -1,0 +1,12 @@
+[
+    {
+        "firstName": "SlingAdmin",
+        "lastName": "Admin",
+        "username": "admin",
+        "hash": "$2a$10$at26TdoSmLShlPXG.WhdcOLtGgboHyU9KT1rKxspYVvEUCfRedaeu",
+        "id": 1,
+        "publicAddress": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+        "dateCreated": "2022-05-04T02:01:09.654Z",
+        "dateUpdated": "2022-05-04T02:01:09.654Z"
+    }
+]
