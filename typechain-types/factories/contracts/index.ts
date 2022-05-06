@@ -2,3 +2,4 @@
 /* tslint:disable */
 /* eslint-disable */
 export { SlingCoinERC20__factory } from "./SlingCoinERC20__factory";
+export { WillowCoinERC20__factory } from "./WillowCoinERC20__factory";

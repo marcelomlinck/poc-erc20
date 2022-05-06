@@ -34,41 +34,6 @@ function Register() {
   }
 
   return (
-    // <Layout>
-    //     <div className="card">
-    //         <h4 className="card-header">Register</h4>
-    //         <div className="card-body">
-    //             <form onSubmit={handleSubmit(onSubmit)}>
-    //                 <div className="form-group">
-    //                     <label>First Name</label>
-    //                     <input name="firstName" type="text" {...register('firstName')} className={`form-control ${errors.firstName ? 'is-invalid' : ''}`} />
-    //                     <div className="invalid-feedback">{errors.firstName?.message}</div>
-    //                 </div>
-    //                 <div className="form-group">
-    //                     <label>Last Name</label>
-    //                     <input name="lastName" type="text" {...register('lastName')} className={`form-control ${errors.lastName ? 'is-invalid' : ''}`} />
-    //                     <div className="invalid-feedback">{errors.lastName?.message}</div>
-    //                 </div>
-    //                 <div className="form-group">
-    //                     <label>Username</label>
-    //                     <input name="username" type="text" {...register('username')} className={`form-control ${errors.username ? 'is-invalid' : ''}`} />
-    //                     <div className="invalid-feedback">{errors.username?.message}</div>
-    //                 </div>
-    //                 <div className="form-group">
-    //                     <label>Password</label>
-    //                     <input name="password" type="password" {...register('password')} className={`form-control ${errors.password ? 'is-invalid' : ''}`} />
-    //                     <div className="invalid-feedback">{errors.password?.message}</div>
-    //                 </div>
-    //                 <button disabled={formState.isSubmitting} className="btn btn-primary">
-    //                     {formState.isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
-    //                     Register
-    //                 </button>
-    //                 <Link href="/account/login" className="btn btn-link">Cancel</Link>
-    //             </form>
-    //         </div>
-    //     </div>
-    // </Layout>
-
     <Layout>
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -153,7 +118,7 @@ function Register() {
           <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
             <button
               type="submit"
-              className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-slingblue hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-willowblue hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               disabled={formState.isSubmitting}
             >
               {formState.isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
@@ -163,7 +128,7 @@ function Register() {
         </div>
       </form>
     </div>
-    <Link href="/account/login" className=" min-h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 btn btn-link font-medium text-slingblue hover:text-indigo-600">Cancel and return to login</Link>
+    <Link href="/account/login" className=" min-h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 btn btn-link font-medium text-willowblue hover:text-indigo-600">Cancel and return to login</Link>
     </Layout>
   );
 }

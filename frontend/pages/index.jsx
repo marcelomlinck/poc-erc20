@@ -22,11 +22,11 @@ function Home() {
     return (
         <div className="p-5">
             <div className="container">
-                <span className="px-40 font-sans text-2xl text-slingnavyblue font-bold">Hi {userService.userValue?.firstName}!</span>
+                <span className="px-40 font-sans text-2xl text-willownavyblue font-bold">Hi {userService.userValue?.firstName}!</span>
                 <div className="px-40 pt-20">
-                    <span className="pl-60 font-sans text-2xl text-slingnavyblue font-bold">Your current balance is  </span>
-                    <span className="font-sans text-6xl text-slingblue font-bold">{balance}</span>
-                    <span className="font-sans text-2xl text-slingnavyblue font-bold">  sling coins!</span>
+                    <span className="pl-60 font-sans text-2xl text-willownavyblue font-bold">Your current balance is  </span>
+                    <span className="font-sans text-6xl text-willowblue font-bold">{balance}</span>
+                    <span className="font-sans text-2xl text-willownavyblue font-bold">  willow coins!</span>
                 </div>
             </div>
         </div>

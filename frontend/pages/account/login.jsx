@@ -39,13 +39,13 @@ function Login() {
             <div>
               <img
                 className="mx-auto h-12 w-auto"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Sling_TV_logo.svg/2560px-Sling_TV_logo.svg.png"
-                alt="Sling"
+                src="https://assets-global.website-files.com/61082de7b224bba038edad53/6141d452e07715f227fd1eb0_wt-logo.svg"
+                alt="Willow"
               />
               <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Log in to your account</h2>
               <p className="mt-2 text-center text-sm text-gray-600">
                 Or{' '}
-                <a href="/account/register" className="font-medium text-slingblue hover:text-indigo-600">
+                <a href="/account/register" className="font-medium text-willowblue hover:text-indigo-600">
                   click here to register
                 </a>
               </p>
@@ -86,7 +86,7 @@ function Login() {
                 <button
                   disabled={formState.isSubmitting}
                   type="submit"
-                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-slingblue hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-willowblue hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   {formState.isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
                   <span className="absolute left-0 inset-y-0 flex items-center pl-3">

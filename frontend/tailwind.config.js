@@ -6,8 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors : {
-        slingnavyblue: "#1F2937",
-        slingblue: "#0C78E1"
+        willownavyblue: "#1F2937",
+        willowblue: "#0C78E1"
       }
     },
   },

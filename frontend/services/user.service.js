@@ -4,7 +4,7 @@ import Router from 'next/router';
 import { ethers, Wallet } from "ethers";
 import { fetchWrapper } from 'helpers';
 
-let SlingCoinERC20 = require('contracts/SlingCoinERC20.json');
+let WillowCoinERC20 = require('contracts/WillowCoinERC20.json');
 
 const { publicRuntimeConfig } = getConfig();
 const baseUrl = `${publicRuntimeConfig.apiUrl}/users`;

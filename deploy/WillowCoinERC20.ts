@@ -7,7 +7,7 @@ const deployFunction: DeployFunction = async (hre: HardhatRuntimeEnvironment) =>
 
     log('deploying to', hre.network.name)
 
-    await deploy('SlingCoinERC20', {
+    await deploy('WillowCoinERC20', {
         from: deployer,
         args: [ 0 ],
         log: true
@@ -16,4 +16,4 @@ const deployFunction: DeployFunction = async (hre: HardhatRuntimeEnvironment) =>
 
 export default deployFunction
 
-deployFunction.tags = [ 'SlingCoinERC20' ]
+deployFunction.tags = [ 'WillowCoinERC20' ]

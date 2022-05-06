@@ -14,3 +14,5 @@ export type { IERC20 } from "./@openzeppelin/contracts/token/ERC20/IERC20";
 export { IERC20__factory } from "./factories/@openzeppelin/contracts/token/ERC20/IERC20__factory";
 export type { SlingCoinERC20 } from "./contracts/SlingCoinERC20";
 export { SlingCoinERC20__factory } from "./factories/contracts/SlingCoinERC20__factory";
+export type { WillowCoinERC20 } from "./contracts/WillowCoinERC20";
+export { WillowCoinERC20__factory } from "./factories/contracts/WillowCoinERC20__factory";

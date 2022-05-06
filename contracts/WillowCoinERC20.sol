@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
-contract SlingCoinERC20 is ERC20 {
+contract WillowCoinERC20 is ERC20 {
     using SafeMath for uint256;
 
     address private immutable owner;
@@ -14,24 +14,24 @@ contract SlingCoinERC20 is ERC20 {
     event MintedTo(address _address, uint256 _amount);
     event BurnedFrom(address _address, uint256 _amount);
 
-    constructor(uint256 _initialSupply) ERC20("SlingCoin", "SLG") {
+    constructor(uint256 _initialSupply) ERC20("WillowCoin", "WLC") {
         owner = msg.sender;
         _mint(msg.sender, _initialSupply * 10**decimals());
         walletExists[msg.sender] = true;
     }
 
     modifier onlyOwner() {
-        require(msg.sender == owner, "SlingCoinERC20: Request can only be performed by Owner");
+        require(msg.sender == owner, "WillowCoinERC20: Request can only be performed by Owner");
         _;
     }
 
     modifier mustWalletExist(address _address) {
-        require(walletExists[_address] == true, "SlingCoinERC20: Wallet does not exist");
+        require(walletExists[_address] == true, "WillowCoinERC20: Wallet does not exist");
         _;
     }
 
     modifier mustNotWalletExist(address _address) {
-        require(walletExists[_address] == false, "SlingCoinERC20: Wallet already exists");
+        require(walletExists[_address] == false, "WillowCoinERC20: Wallet already exists");
         _;
     }
 

@@ -30,14 +30,7 @@ function Nav() {
   if (!user) return null;
 
   // only show nav when logged in
-
   return (
-    // <nav className="navbar navbar-expand navbar-dark bg-dark">
-    //     <div className="navbar-nav">
-    //         <NavLink href="/" exact className="nav-item nav-link">Home</NavLink>
-    //         <a onClick={logout} className="nav-item nav-link">Logout</a>
-    //     </div>
-    // </nav>
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
         <>
@@ -55,11 +48,11 @@ function Nav() {
                 </Disclosure.Button>
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex-shrink-0 flex items-center">
+                <div className="invert flex-shrink-0 flex items-center">
                   <img
                     className="hidden lg:block h-8 w-auto"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Sling_TV_logo.svg/2560px-Sling_TV_logo.svg.png"
-                    alt="Sling"
+                    src="https://design.willowtreeapps.com/static/media/WT_Logo_Black.d90341a2.svg"
+                    alt="Willow"
                   />
                 </div>
                 <div className="hidden sm:block sm:ml-6">

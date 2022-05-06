@@ -1,17 +1,17 @@
 import { describe } from "mocha";
 import { expect } from "chai";
 import { deployments, ethers, getNamedAccounts } from "hardhat";
-import { SlingCoinERC20 } from "../typechain-types/contracts/SlingCoinERC20";
+import { WillowCoinERC20 } from "../typechain-types/contracts/WillowCoinERC20";
 
-describe("SlingCoinERC20", function () {
+describe("WillowCoinERC20", function () {
     let owner: string;
-    let contract: SlingCoinERC20;
+    let contract: WillowCoinERC20;
 
     beforeEach(async () => {
-        await deployments.fixture([ 'SlingCoinERC20' ]);
+        await deployments.fixture([ 'WillowCoinERC20' ]);
         const { deployer } = await getNamedAccounts();
         owner = deployer;
-        contract =  await ethers.getContract("SlingCoinERC20") as SlingCoinERC20;
+        contract =  await ethers.getContract("WillowCoinERC20") as WillowCoinERC20;
     });
 
     it("Should deployer be same address as owner", async function () {
@@ -48,14 +48,14 @@ describe("SlingCoinERC20", function () {
         await contract.newWallet(wallet.address, 100);
 
         expect(contract.newWallet(wallet.address, 100))
-        .to.be.revertedWith("SlingCoinERC20: Wallet already exist");
+        .to.be.revertedWith("WillowCoinERC20: Wallet already exist");
     });
 
     it("Should not allow to access non signed up wallets", async function () {
         const wallet = ethers.Wallet.createRandom();
 
         expect(contract.mint(wallet.address, 100))
-        .to.be.revertedWith("SlingCoinERC20: Wallet does not exist");
+        .to.be.revertedWith("WillowCoinERC20: Wallet does not exist");
     });
 
     it("Should allow to send to a wallet", async function () {
@@ -73,7 +73,7 @@ describe("SlingCoinERC20", function () {
         await contract.newWallet(wallet.address, 50);
         
         expect(contract.connect(wallet2.address).mint(wallet.address, 60))
-        .to.be.revertedWith("SlingCoinERC20: Request can only be performed by Owner");
+        .to.be.revertedWith("WillowCoinERC20: Request can only be performed by Owner");
     });
 
     it("Should allow to add up tokens", async function () {
@@ -109,6 +109,6 @@ describe("SlingCoinERC20", function () {
         await contract.newWallet(wallet.address, 50);
         
         expect(contract.connect(wallet2.address).deduct(wallet.address, 60))
-        .to.be.revertedWith("SlingCoinERC20: Request can only be performed by Owner");
+        .to.be.revertedWith("WillowCoinERC20: Request can only be performed by Owner");
     });
 });
