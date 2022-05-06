@@ -9,5 +9,17 @@
         "privateKey": "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80",
         "dateCreated": "2022-05-04T02:01:09.654Z",
         "dateUpdated": "2022-05-04T02:01:09.654Z"
+    },
+    {
+        "firstName": "Bubi",
+        "lastName": "Buberson",
+        "username": "bubi",
+        "hash": "$2a$10$FUDqds4r.rjyS3tJC7jRlejHAF7zE2oEjOj71FHDLqirrdJkFCQry",
+        "publicAddress": "0x82223EE8Dcf5deD2fB92D6f69f31Bd615a9eaE30",
+        "publicKey": "0x04f1e8e80310658060a38e17c5116bb29bb79bdf515ddc946bd2f161e9ac1ba6df7293eb170760672fb3f70a36709c15fb60081693ae8efe5bc9dfb359eba1f37b",
+        "privateKey": "0x42e52175d71df8a1a95815c3e7f1a01472719e358cad8eb20f76b87ec1f36fac",
+        "id": 2,
+        "dateCreated": "2022-05-06T00:27:13.190Z",
+        "dateUpdated": "2022-05-06T00:27:13.190Z"
     }
 ]
