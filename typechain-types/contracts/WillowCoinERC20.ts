@@ -35,15 +35,17 @@ export interface WillowCoinERC20Interface extends utils.Interface {
     "decreaseAllowance(address,uint256)": FunctionFragment;
     "deduct(address,uint256)": FunctionFragment;
     "doesWalletExist(address)": FunctionFragment;
-    "getOwner()": FunctionFragment;
     "increaseAllowance(address,uint256)": FunctionFragment;
     "mint(address,uint256)": FunctionFragment;
     "name()": FunctionFragment;
     "newWallet(address,uint256)": FunctionFragment;
+    "owner()": FunctionFragment;
+    "renounceOwnership()": FunctionFragment;
     "symbol()": FunctionFragment;
     "totalSupply()": FunctionFragment;
     "transfer(address,uint256)": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
+    "transferOwnership(address)": FunctionFragment;
     "walletExists(address)": FunctionFragment;
   };
 
@@ -56,15 +58,17 @@ export interface WillowCoinERC20Interface extends utils.Interface {
       | "decreaseAllowance"
       | "deduct"
       | "doesWalletExist"
-      | "getOwner"
       | "increaseAllowance"
       | "mint"
       | "name"
       | "newWallet"
+      | "owner"
+      | "renounceOwnership"
       | "symbol"
       | "totalSupply"
       | "transfer"
       | "transferFrom"
+      | "transferOwnership"
       | "walletExists"
   ): FunctionFragment;
 
@@ -90,7 +94,6 @@ export interface WillowCoinERC20Interface extends utils.Interface {
     functionFragment: "doesWalletExist",
     values: [string]
   ): string;
-  encodeFunctionData(functionFragment: "getOwner", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "increaseAllowance",
     values: [string, BigNumberish]
@@ -104,6 +107,11 @@ export interface WillowCoinERC20Interface extends utils.Interface {
     functionFragment: "newWallet",
     values: [string, BigNumberish]
   ): string;
+  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "renounceOwnership",
+    values?: undefined
+  ): string;
   encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "totalSupply",
@@ -116,6 +124,10 @@ export interface WillowCoinERC20Interface extends utils.Interface {
   encodeFunctionData(
     functionFragment: "transferFrom",
     values: [string, string, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "transferOwnership",
+    values: [string]
   ): string;
   encodeFunctionData(
     functionFragment: "walletExists",
@@ -135,7 +147,6 @@ export interface WillowCoinERC20Interface extends utils.Interface {
     functionFragment: "doesWalletExist",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "getOwner", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "increaseAllowance",
     data: BytesLike
@@ -143,6 +154,11 @@ export interface WillowCoinERC20Interface extends utils.Interface {
   decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "newWallet", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "renounceOwnership",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "totalSupply",
@@ -154,6 +170,10 @@ export interface WillowCoinERC20Interface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
+    functionFragment: "transferOwnership",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "walletExists",
     data: BytesLike
   ): Result;
@@ -162,6 +182,7 @@ export interface WillowCoinERC20Interface extends utils.Interface {
     "Approval(address,address,uint256)": EventFragment;
     "BurnedFrom(address,uint256)": EventFragment;
     "MintedTo(address,uint256)": EventFragment;
+    "OwnershipTransferred(address,address)": EventFragment;
     "SignedUpNewWallet(address,uint256)": EventFragment;
     "Transfer(address,address,uint256)": EventFragment;
   };
@@ -169,6 +190,7 @@ export interface WillowCoinERC20Interface extends utils.Interface {
   getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "BurnedFrom"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "MintedTo"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "SignedUpNewWallet"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
 }
@@ -206,6 +228,18 @@ export type MintedToEvent = TypedEvent<
 >;
 
 export type MintedToEventFilter = TypedEventFilter<MintedToEvent>;
+
+export interface OwnershipTransferredEventObject {
+  previousOwner: string;
+  newOwner: string;
+}
+export type OwnershipTransferredEvent = TypedEvent<
+  [string, string],
+  OwnershipTransferredEventObject
+>;
+
+export type OwnershipTransferredEventFilter =
+  TypedEventFilter<OwnershipTransferredEvent>;
 
 export interface SignedUpNewWalletEventObject {
   _address: string;
@@ -291,8 +325,6 @@ export interface WillowCoinERC20 extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
-    getOwner(overrides?: CallOverrides): Promise<[string]>;
-
     increaseAllowance(
       spender: string,
       addedValue: BigNumberish,
@@ -313,6 +345,12 @@ export interface WillowCoinERC20 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    owner(overrides?: CallOverrides): Promise<[string]>;
+
+    renounceOwnership(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     symbol(overrides?: CallOverrides): Promise<[string]>;
 
     totalSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
@@ -327,6 +365,11 @@ export interface WillowCoinERC20 extends BaseContract {
       from: string,
       to: string,
       amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    transferOwnership(
+      newOwner: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -366,8 +409,6 @@ export interface WillowCoinERC20 extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
-  getOwner(overrides?: CallOverrides): Promise<string>;
-
   increaseAllowance(
     spender: string,
     addedValue: BigNumberish,
@@ -388,6 +429,12 @@ export interface WillowCoinERC20 extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  owner(overrides?: CallOverrides): Promise<string>;
+
+  renounceOwnership(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   symbol(overrides?: CallOverrides): Promise<string>;
 
   totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
@@ -402,6 +449,11 @@ export interface WillowCoinERC20 extends BaseContract {
     from: string,
     to: string,
     amount: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  transferOwnership(
+    newOwner: string,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -441,8 +493,6 @@ export interface WillowCoinERC20 extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    getOwner(overrides?: CallOverrides): Promise<string>;
-
     increaseAllowance(
       spender: string,
       addedValue: BigNumberish,
@@ -463,6 +513,10 @@ export interface WillowCoinERC20 extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
+    owner(overrides?: CallOverrides): Promise<string>;
+
+    renounceOwnership(overrides?: CallOverrides): Promise<void>;
+
     symbol(overrides?: CallOverrides): Promise<string>;
 
     totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
@@ -479,6 +533,11 @@ export interface WillowCoinERC20 extends BaseContract {
       amount: BigNumberish,
       overrides?: CallOverrides
     ): Promise<boolean>;
+
+    transferOwnership(
+      newOwner: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     walletExists(arg0: string, overrides?: CallOverrides): Promise<boolean>;
   };
@@ -506,6 +565,15 @@ export interface WillowCoinERC20 extends BaseContract {
       _amount?: null
     ): MintedToEventFilter;
     MintedTo(_address?: null, _amount?: null): MintedToEventFilter;
+
+    "OwnershipTransferred(address,address)"(
+      previousOwner?: string | null,
+      newOwner?: string | null
+    ): OwnershipTransferredEventFilter;
+    OwnershipTransferred(
+      previousOwner?: string | null,
+      newOwner?: string | null
+    ): OwnershipTransferredEventFilter;
 
     "SignedUpNewWallet(address,uint256)"(
       _address?: null,
@@ -562,8 +630,6 @@ export interface WillowCoinERC20 extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    getOwner(overrides?: CallOverrides): Promise<BigNumber>;
-
     increaseAllowance(
       spender: string,
       addedValue: BigNumberish,
@@ -584,6 +650,12 @@ export interface WillowCoinERC20 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    owner(overrides?: CallOverrides): Promise<BigNumber>;
+
+    renounceOwnership(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     symbol(overrides?: CallOverrides): Promise<BigNumber>;
 
     totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
@@ -598,6 +670,11 @@ export interface WillowCoinERC20 extends BaseContract {
       from: string,
       to: string,
       amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    transferOwnership(
+      newOwner: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -641,8 +718,6 @@ export interface WillowCoinERC20 extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    getOwner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     increaseAllowance(
       spender: string,
       addedValue: BigNumberish,
@@ -663,6 +738,12 @@ export interface WillowCoinERC20 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
+    owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    renounceOwnership(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
     symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -677,6 +758,11 @@ export interface WillowCoinERC20 extends BaseContract {
       from: string,
       to: string,
       amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    transferOwnership(
+      newOwner: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 

@@ -4,11 +4,9 @@ import Router from 'next/router';
 import { ethers, Wallet } from "ethers";
 import { fetchWrapper } from 'helpers';
 
-let WillowCoinERC20 = require('contracts/WillowCoinERC20.json');
-
 const { publicRuntimeConfig } = getConfig();
 const baseUrl = `${publicRuntimeConfig.apiUrl}/users`;
-const userSubject = new BehaviorSubject(process.browser && JSON.parse(localStorage.getItem('user')));
+let userSubject = new BehaviorSubject(process.browser && JSON.parse(localStorage.getItem('user')));
 
 export const userService = {
     user: userSubject.asObservable(),
@@ -16,7 +14,8 @@ export const userService = {
     login,
     logout,
     register,
-    getBalance
+    getBalance, 
+    isAdmin
 };
 
 function login(username, password) {
@@ -43,4 +42,8 @@ function register(user) {
 
 async function getBalance(user) {
     return fetchWrapper.post(`${baseUrl}/balance`, { userId: user.id });
+}
+
+function isAdmin() {
+    return (userSubject.value.publicAddress === process.env.NEXT_PUBLIC_BLOCKCHAIN_OWNER_ADDRESS);
 }

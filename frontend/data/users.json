@@ -21,5 +21,17 @@
         "id": 2,
         "dateCreated": "2022-05-06T00:27:13.190Z",
         "dateUpdated": "2022-05-06T00:27:13.190Z"
+    },
+    {
+        "firstName": "Miguel",
+        "lastName": "Santos",
+        "username": "miguel",
+        "hash": "$2a$10$IK4/E3CPauDcy4Krvve2MOil3dlzA5ilJEfszVKWQ5lLyAr5PozAy",
+        "publicAddress": "0x1bA1384fb639833552343651310E28e4dDcd4926",
+        "publicKey": "0x04fa647f0abcb540b721b74fe6754660fe67093160ce502a2f9f2cdba7bb6c614f10ec2423f77b548427a197baffd17c6f7707689afd8f018057f0056089728c94",
+        "privateKey": "0xcb6799ae9fe7326632d171bba84587cac432b6ccbe6831a3bf93913ddaf22e63",
+        "id": 3,
+        "dateCreated": "2022-05-06T19:39:50.418Z",
+        "dateUpdated": "2022-05-06T19:39:50.418Z"
     }
 ]

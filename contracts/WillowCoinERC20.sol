@@ -3,11 +3,11 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract WillowCoinERC20 is ERC20 {
+contract WillowCoinERC20 is ERC20, Ownable {
     using SafeMath for uint256;
-
-    address private immutable owner;
+    
     mapping (address => bool) public walletExists;
 
     event SignedUpNewWallet(address _address, uint256 _amount);
@@ -15,14 +15,9 @@ contract WillowCoinERC20 is ERC20 {
     event BurnedFrom(address _address, uint256 _amount);
 
     constructor(uint256 _initialSupply) ERC20("WillowCoin", "WLC") {
-        owner = msg.sender;
+        _transferOwnership(msg.sender);
         _mint(msg.sender, _initialSupply * 10**decimals());
         walletExists[msg.sender] = true;
-    }
-
-    modifier onlyOwner() {
-        require(msg.sender == owner, "WillowCoinERC20: Request can only be performed by Owner");
-        _;
     }
 
     modifier mustWalletExist(address _address) {
@@ -33,10 +28,6 @@ contract WillowCoinERC20 is ERC20 {
     modifier mustNotWalletExist(address _address) {
         require(walletExists[_address] == false, "WillowCoinERC20: Wallet already exists");
         _;
-    }
-
-    function getOwner() external view returns (address) {
-        return owner;
     }
 
     function newWallet(address _address, uint256 _amount) external onlyOwner mustNotWalletExist(_address) {

@@ -21,6 +21,7 @@ function apiHandler(handler) {
                 const token = authHeader.split(' ')[1];
                 const decodedToken = jwt.decode(token)
                 if (req.url === '/api/users' || req.url.startsWith('/api/users/mint') || req.url.startsWith('/api/users/deduct')) {
+                    console.log(process.env.BLOCKCHAIN_OWNER_ADDRESS)
                     if (decodedToken?.key !== process.env.BLOCKCHAIN_OWNER_ADDRESS) {
                         return res.status(403).end();
                     }

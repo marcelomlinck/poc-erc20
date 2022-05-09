@@ -15,7 +15,7 @@ describe("WillowCoinERC20", function () {
     });
 
     it("Should deployer be same address as owner", async function () {
-        const contractOwner = await contract.getOwner();
+        const contractOwner = await contract.owner();
 
         expect(contractOwner).to.be.equal(owner);
     });
